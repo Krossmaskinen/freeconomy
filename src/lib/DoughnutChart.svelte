@@ -2,7 +2,7 @@
 	import Doughnut from 'svelte-chartjs/src/Doughnut.svelte';
 
 	export let salary;
-	export let taxesAndExpenses;
+	export let taxes;
 	export let retirementAmount;
 	export let vacationAmount;
 	export let buffer;
@@ -40,8 +40,10 @@
 			],
 			datasets: [
 				{
-					data: [salary, buffer, retirementAmount, vacationAmount, 58, taxesAndExpenses],
-					backgroundColor: ['#a852c7', '#f00', '#0f0', '#00f', 'fff', 'ff0']
+					data: [salary, buffer, retirementAmount, vacationAmount, 58, taxes].map((x) =>
+						x.toFixed(0)
+					),
+					backgroundColor: ['#a852c7', '#f00', '#0f0', '#00f', '#fff', '#ff0']
 				}
 			]
 		}}

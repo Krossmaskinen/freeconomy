@@ -4,6 +4,7 @@
 	import HourlyRateSlider from '$lib/HourlyRateSlider.svelte';
 	import RetirementSlider from '$lib/RetirementSlider.svelte';
 	import SalarySlider from '$lib/SalarySlider.svelte';
+	import Summary from '$lib/Summary.svelte';
 
 	let hourlyRate = 1020;
 	let hoursPerMonth = 160;
@@ -11,13 +12,16 @@
 	let vacationAmount = 4198;
 	let salary = 40000;
 
-	const taxesPercentage = 1 - 0.3142;
-	const consultantPercentage = 0.7;
+	const taxesAndSocialExpensesPercentage = 0.3142;
 	const retirementTaxPercentage = 0.2426;
+	const consultantPercentage = 0.7;
 
 	$: amountToDistribute = hourlyRate * hoursPerMonth * consultantPercentage;
-	$: taxesAndExpenses = salary * taxesPercentage;
+	$: taxesAndExpenses = salary * taxesAndSocialExpensesPercentage;
+	$: vacationTax = vacationAmount * taxesAndSocialExpensesPercentage;
+	$: retirementTax = retirementAmount * retirementTaxPercentage;
 	$: buffer = amountToDistribute - retirementAmount - vacationAmount - salary;
+	$: taxes = taxesAndExpenses + vacationTax + retirementTax;
 </script>
 
 <Header />
@@ -25,7 +29,7 @@
 	<div>
 		<section class="bg-gray-700 p-4 rounded-xl flex justify-center mb-4">
 			<div class="w-80 h-80">
-				<DoughnutChart {salary} {taxesAndExpenses} {retirementAmount} {vacationAmount} {buffer} />
+				<DoughnutChart {salary} {taxes} {retirementAmount} {vacationAmount} {buffer} />
 			</div>
 		</section>
 
@@ -40,13 +44,7 @@
 
 			<div class="divider" />
 
-			<div>
-				Summa att fördela: {amountToDistribute.toFixed(0)} kr
-			</div>
-
-			<div>
-				Buffer på kontot: {buffer.toFixed(0)} kr
-			</div>
+			<Summary {amountToDistribute} {retirementAmount} {buffer} {salary} />
 		</div>
 	</div>
 
