@@ -6,10 +6,10 @@
 	import SalarySlider from '$lib/SalarySlider.svelte';
 	import Summary from '$lib/Summary.svelte';
 
-	let hourlyRate = 1020;
+	let hourlyRate = 1010;
 	let hoursPerMonth = 160;
 	let retirementAmount = 5000;
-	let vacationAmount = 4198;
+	let vacationAmount = 4200;
 	let salary = 40000;
 
 	const taxesAndSocialExpensesPercentage = 0.3142;
@@ -20,12 +20,12 @@
 	$: taxesAndExpenses = salary * taxesAndSocialExpensesPercentage;
 	$: vacationTax = vacationAmount * taxesAndSocialExpensesPercentage;
 	$: retirementTax = retirementAmount * retirementTaxPercentage;
-	$: buffer = amountToDistribute - retirementAmount - vacationAmount - salary;
 	$: taxes = taxesAndExpenses + vacationTax + retirementTax;
+	$: buffer = amountToDistribute - retirementAmount - vacationAmount - salary - taxes;
 </script>
 
 <Header />
-<div class="grid grid-cols-2 md:gap-4 m-4">
+<div class="grid grid-cols-1 md:grid-cols-2 md:gap-4 m-4">
 	<div>
 		<section class="bg-gray-700 p-4 rounded-xl flex justify-center mb-4">
 			<div class="w-80 h-80">
