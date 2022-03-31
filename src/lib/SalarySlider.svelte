@@ -11,7 +11,7 @@
 		class="range range-primary"
 		min="20000"
 		max={maxSalary}
-		step="100"
+		step="500"
 		bind:value={salary}
 	/>
 
