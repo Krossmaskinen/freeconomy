@@ -2030,15 +2030,6 @@ html {
 .w-80 {
   width: 20rem;
 }
-.max-w-md {
-  max-width: 28rem;
-}
-.max-w-lg {
-  max-width: 32rem;
-}
-.max-w-2xl {
-  max-width: 42rem;
-}
 .max-w-5xl {
   max-width: 64rem;
 }
@@ -2053,9 +2044,6 @@ html {
 }
 .rounded-xl {
   border-radius: 0.75rem;
-}
-.border-2 {
-  border-width: 2px;
 }
 .bg-gray-700 {
   --tw-bg-opacity: 1;

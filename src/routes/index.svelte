@@ -5,6 +5,7 @@
 	import RetirementSlider from '$lib/RetirementSlider.svelte';
 	import SalarySlider from '$lib/SalarySlider.svelte';
 	import Summary from '$lib/Summary.svelte';
+	import OverTime from '$lib/OverTime.svelte';
 
 	let hourlyRate = 1010;
 	let hoursPerMonth = 160;
@@ -59,4 +60,6 @@
 			<RetirementSlider maxRetirement={15000} bind:retirementAmount />
 		</section>
 	</div>
+
+	<OverTime {buffer} {salary} />
 </div>
