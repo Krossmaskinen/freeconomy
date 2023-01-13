@@ -12,7 +12,7 @@
 		name="hourly-rate"
 		min="500"
 		max="1500"
-		step="10"
+		step="5"
 		bind:value={hourlyRate}
 	/>
 
